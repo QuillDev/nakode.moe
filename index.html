@@ -54,6 +54,9 @@
   .cmd code { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; min-width: 0; flex: 1; }
   .cmd code i { color: var(--muted); font-style: normal; }
   .pill { font: 700 13px "M PLUS Rounded 1c", sans-serif; color: var(--ink); background: var(--fill); border: 0; border-radius: 999px; height: 30px; padding: 0 14px; cursor: pointer; flex: none; }
+  .os { display: flex; gap: 6px; margin-top: 2px; }
+  .os .pill { color: var(--muted); background: transparent; box-shadow: inset 0 0 0 1px var(--line); }
+  .os .pill.on { color: var(--ink); background: var(--fill); box-shadow: none; }
   .chips { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 10px; }
   .btn { display: inline-flex; align-items: center; height: 44px; padding: 0 22px; border-radius: 999px; font-weight: 700; font-size: 16px; }
   .btn.go { background: var(--pink-deep); color: #fff; }
@@ -118,7 +121,8 @@
         <div class="bub hide" data-say="i'm an agent that lives on your own machine."></div>
         <div class="bub hide" data-say="i remember what you tell me, write down what i learn, and answer wherever you chat."></div>
         <div class="bub hide" data-say="want one of me? run this:"></div>
-        <div class="cmd hide" id="cmd"><code><i>$</i> curl -fsSL https://nakode.moe/install.sh | bash</code><button class="pill" id="copy">Copy</button></div>
+        <div class="os hide" id="os" role="tablist" aria-label="Operating system"><button class="pill on" data-os="unix" role="tab">macOS / Linux</button><button class="pill" data-os="win" role="tab">Windows</button></div>
+        <div class="cmd hide" id="cmd"><code><i id="prompt">$</i> <span id="line">curl -fsSL https://nakode.moe/install.sh | bash</span></code><button class="pill" id="copy">Copy</button></div>
         <div class="chips hide" id="chips"><a class="btn go" href="https://github.com/QuillDev/Nako-Agent">Show me the code</a></div>
       </div>
     </div>
@@ -187,9 +191,22 @@
       [...bub.querySelectorAll(".w")].forEach((w, n) => w.classList.toggle("on", n < words));
     });
     $("cmd").classList.toggle("hide", t < CMD_AT);
+    $("os").classList.toggle("hide", t < CMD_AT);
     $("chips").classList.toggle("hide", t < CHIPS_AT);
   }
 
+  const INSTALL = { unix: ["$", "curl -fsSL https://nakode.moe/install.sh | bash"], win: [">", "iex (irm https://nakode.moe/install.ps1)"] };
+  function pickOs(os) {
+    [$("prompt").textContent, $("line").textContent] = INSTALL[os];
+    for (const tab of $("os").children) tab.classList.toggle("on", tab.dataset.os === os);
+    $("copy").textContent = "Copy";
+  }
+  for (const tab of $("os").children) tab.addEventListener("click", () => pickOs(tab.dataset.os));
+  pickOs(/Win/i.test(navigator.userAgentData?.platform || navigator.platform || "") ? "win" : "unix");
+  $("copy").addEventListener("click", () => {
+    navigator.clipboard?.writeText($("line").textContent);
+    $("copy").textContent = "Copied";
+  });
   const frozen = new URLSearchParams(location.search).get("t");
   if (frozen !== null) { render(frozen === "end" ? END : Number(frozen)); return; }
   if (matchMedia("(prefers-reduced-motion: reduce)").matches) { render(END); return; }
@@ -202,10 +219,6 @@
     raf = requestAnimationFrame(tick);
   }
   $("send").addEventListener("click", play);
-  $("copy").addEventListener("click", () => {
-    navigator.clipboard?.writeText("curl -fsSL https://nakode.moe/install.sh | bash");
-    $("copy").textContent = "Copied";
-  });
   render(0);
   play();
 })();
