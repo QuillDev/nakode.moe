@@ -10,8 +10,8 @@
 <link rel="icon" href="favicon.png" type="image/png">
 <meta property="og:title" content="nako">
 <meta property="og:description" content="A personal agent that lives on your own machine.">
-<meta property="og:image" content="https://nakode.moe/icon-512.png">
-<meta property="og:url" content="https://nakode.moe/">
+<meta property="og:image" content="https://nako.bot/icon-512.png">
+<meta property="og:url" content="https://nako.bot/">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@500;700;800&family=Noto+Sans+JP:wght@900&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
@@ -128,7 +128,7 @@
         <div class="bub hide" data-say="i remember what you tell me, write down what i learn, and answer wherever you chat."></div>
         <div class="bub hide" data-say="want one of me? run this:"></div>
         <div class="os hide" id="os" role="tablist" aria-label="Operating system"><button class="pill on" data-os="unix" role="tab">macOS / Linux</button><button class="pill" data-os="win" role="tab">Windows</button></div>
-        <div class="cmd hide" id="cmd"><code><i id="prompt">$</i> <span id="line">curl -fsSL https://nakode.moe/install.sh | bash</span></code><button class="pill" id="copy">Copy</button></div>
+        <div class="cmd hide" id="cmd"><code><i id="prompt">$</i> <span id="line">curl -fsSL https://nako.bot/install.sh | bash</span></code><button class="pill" id="copy">Copy</button></div>
         <div class="chips hide" id="chips"><a class="btn go" href="https://github.com/QuillDev/Nako-Agent">Show me the code</a></div>
       </div>
     </div>
@@ -201,7 +201,7 @@
     $("chips").classList.toggle("hide", t < CHIPS_AT);
   }
 
-  const INSTALL = { unix: ["$", "curl -fsSL https://nakode.moe/install.sh | bash"], win: [">", "iex (irm https://nakode.moe/install.ps1)"] };
+  const INSTALL = { unix: ["$", "curl -fsSL https://nako.bot/install.sh | bash"], win: [">", "iex (irm https://nako.bot/install.ps1)"] };
   function pickOs(os) {
     [$("prompt").textContent, $("line").textContent] = INSTALL[os];
     for (const tab of $("os").children) tab.classList.toggle("on", tab.dataset.os === os);
