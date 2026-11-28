@@ -74,7 +74,7 @@
   footer { color: var(--muted); font-size: 14px; text-align: center; padding: 34px 20px 30px; }
   .more-hint { display: block; text-align: center; color: var(--muted); font-size: 14px; margin-top: 16px; }
   .more-hint:hover { color: var(--ink); }
-  .suite { max-width: 680px; margin: 0 auto; padding: 70px 20px 10px; }
+  .suite { max-width: 680px; margin: 0 auto; padding: 70px 20px 64px; }
   .suite h2 { font-size: 30px; font-weight: 800; letter-spacing: -.01em; line-height: 1.15; margin: 0 0 8px; }
   .suite > p { color: var(--muted); font-size: 17px; margin: 0 0 22px; }
   .suite ul { list-style: none; margin: 0; padding: 0; }
@@ -111,7 +111,7 @@
 <div class="page">
   <header>
     <div class="mark"><b>な</b>こ</div>
-    <nav class="links"><a href="https://github.com/QuillDev/Nako-Agent">GitHub</a></nav>
+    <nav class="links"><a href="https://github.com/QuillDev/nako">GitHub</a></nav>
   </header>
 
   <div class="thread">
@@ -129,7 +129,7 @@
         <div class="bub hide" data-say="want one of me? run this:"></div>
         <div class="os hide" id="os" role="tablist" aria-label="Operating system"><button class="pill on" data-os="unix" role="tab">macOS / Linux</button><button class="pill" data-os="win" role="tab">Windows</button></div>
         <div class="cmd hide" id="cmd"><code><i id="prompt">$</i> <span id="line">curl -fsSL https://nako.bot/install.sh | bash</span></code><button class="pill" id="copy">Copy</button></div>
-        <div class="chips hide" id="chips"><a class="btn go" href="https://github.com/QuillDev/Nako-Agent">Show me the code</a></div>
+        <div class="chips hide" id="chips"><a class="btn go" href="https://github.com/QuillDev/nako">Show me the code</a></div>
       </div>
     </div>
   </div>
@@ -147,14 +147,12 @@
   <h2>The rest of the suite</h2>
   <p>Everything here is open source. Install it yourself, or read the code.</p>
   <ul>
-    <li><img class="sticker" src="logos/agent.png" alt="" width="48" height="48"><div><b><i>na</i>ko agent</b><span>The agent herself. Runs on your machine and answers on Slack, Discord, Telegram and the terminal.</span></div><a href="https://github.com/QuillDev/Nako-Agent">View code</a></li>
-    <li><img src="logos/portal.png" alt="" width="48" height="48"><div><b><i>na</i>ko portal</b><span>Her own chat app for web, desktop and Android, signed in with a passkey.</span></div><a href="https://github.com/QuillDev/nako-portal">View code</a></li>
+    <li><img src="logos/nako.png" alt="" width="48" height="48"><div><b><i>na</i>ko</b><span>A personal agent on your own machine, with web, desktop and Android portal plus Slack and Discord.</span></div><a href="https://github.com/QuillDev/nako">View code</a></li>
     <li><img src="logos/nanime.png" alt="" width="48" height="48"><div><b><i>na</i>nime</b><span>A self-hosted anime library and streaming app that plays on any device.</span></div><a href="https://github.com/QuillDev/Nanime">View code</a></li>
     <li><img src="logos/nanotes.png" alt="" width="48" height="48"><div><b><i>na</i>notes</b><span>A floating Markdown scratchpad that saves plain files.</span></div><a href="https://github.com/QuillDev/nanotes">View code</a></li>
     <li><span class="glyph" aria-hidden="true">&gt;_</span><div><b><i>na</i>kode</b><span>A terminal layer for running agent sessions. Experimental.</span></div><a href="https://github.com/QuillDev/nakode">View code</a></li>
   </ul>
 </section>
-<footer>nako agent is a fork of <a href="https://github.com/NousResearch/hermes-agent" style="text-decoration:underline">Hermes Agent</a>, kept current with upstream. MIT.</footer>
 
 <script>
 (() => {
